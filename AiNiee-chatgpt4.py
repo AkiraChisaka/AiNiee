@@ -137,8 +137,8 @@ class Translator():
         print("[INFO]  已添加默认原文示例",original_exmaple, '\n')
         print("[INFO]  已添加默认译文示例",translation_example, '\n')
         print("[INFO]  文本总行数为：",total_text_line_count,"  每次发送行数为：",line_count_configuration,"  计划的翻译任务总数是：", tasks_Num) 
-        print("\033[1;32m[INFO] \033[0m 五秒后开始进行翻译，请注意保持网络通畅，余额充足。", '\n')
-        time.sleep(5)  
+        print("\033[1;32m[INFO] \033[0m 开始进行翻译，请注意保持网络通畅，余额充足。", '\n')
+        
 
         # 测试用，会导致任务多一个，注意下
         #api_requester_instance = Api_Requester()
