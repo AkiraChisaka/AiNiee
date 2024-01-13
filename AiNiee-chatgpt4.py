@@ -97,6 +97,10 @@ class Translator():
         # 将浮点型，整数型文本内容变成字符型文本内容
         Cache_Manager.convert_source_text_to_str(self,cache_list)
 
+        print("Is the problem here?")
+        print("cache_list = ")
+        print(cache_list)
+
         # 如果翻译日语或者韩语文本时，则去除非中日韩文本
         Text_Source_Language =  Window.Widget_translation_settings.A_settings.comboBox_source_text.currentText() 
         if Text_Source_Language == "日语" or Text_Source_Language == "韩语":
@@ -3051,14 +3055,18 @@ class File_Reader():
                 # 判断文件是否为 JSON 文件
                 if file.endswith(".json"):
                     file_path = os.path.join(root, file) # 构建文件路径
-                    
+
                     # 读取 JSON 文件内容
                     with open(file_path, 'r', encoding='utf-8') as json_file:
                         json_data = json.load(json_file)
 
+                        print("Focus Here:")
+
                         # 提取键值对
                         for key, value in json_data.items():
                             # 根据 JSON 文件内容的数据结构，获取相应字段值
+                            print("key = " + key)
+                            print("value = " + value)
                             source_text = key
                             translated_text = value
                             storage_path = os.path.relpath(file_path, folder_path) 
