@@ -3225,9 +3225,9 @@ class Cache_Manager():
             return bool(pattern.search(text))
 
         for entry in cache_list:
-            source_text = entry.get('source_text')
+            translated_text = entry.get('translated_text')
 
-            if source_text and not contains_cjk(source_text):
+            if translated_text and not contains_cjk(translated_text):
                 entry['translation_status'] = 7
 
     # 获取缓存数据中指定行数的未翻译文本，且改变翻译状态为2
