@@ -98,7 +98,7 @@ class Translator():
         Cache_Manager.convert_source_text_to_str(self,cache_list)
 
         # Alter: 把译文考进原文
-        Cache_Manager.copy_translated_text_into_source_text(self,cache_list)
+        Cache_Manager.set_translated_text_as_source_text(self,cache_list)
 
         print("Is the problem here?")
         print("cache_list = ")
@@ -261,6 +261,9 @@ class Translator():
             except Exception as e:
                 print("\033[1;33mWarning:\033[0m 文本转换出现问题！！将跳过该步，错误信息如下")
                 print(f"Error: {e}\n")
+
+        # Alter: 再把前缀改成数字
+        Cache_Manager.set_text_index_as_source_text(self,cache_list)
 
         # 将翻译结果写为文件
         output_path = configurator.Output_Folder
@@ -3223,9 +3226,14 @@ class Cache_Manager():
                 entry['translation_status'] = 7
 
     # Alter: 将译文栏的内容移动到原文栏
-    def copy_translated_text_into_source_text(self,cache_list):
+    def set_translated_text_as_source_text(self,cache_list):
         for entry in cache_list:
             entry['source_text'] = entry.get('translated_text')
+    
+    # Alter: 再把译文栏改回数字
+    def set_text_index_as_source_text(self,cache_list):
+        for entry in cache_list:
+            entry['source_text'] = entry.get('text_index')\
 
     # 处理缓存数据的非中日韩字符，且改变翻译状态为7
     def process_dictionary_list(self,cache_list):
