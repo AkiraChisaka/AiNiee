@@ -97,9 +97,14 @@ class Translator():
         # 将浮点型，整数型文本内容变成字符型文本内容
         Cache_Manager.convert_source_text_to_str(self,cache_list)
 
+        # Alter: 把译文考进原文
+        Cache_Manager.copy_translated_text_into_source_text(self,cache_list)
+
         print("Is the problem here?")
         print("cache_list = ")
         print(cache_list)
+
+
 
         # 如果翻译日语或者韩语文本时，则去除非中日韩文本
         Text_Source_Language =  Window.Widget_translation_settings.A_settings.comboBox_source_text.currentText() 
@@ -3216,6 +3221,11 @@ class Cache_Manager():
             if isinstance(source_text, (int, float)):
                 entry['source_text'] = str(source_text)
                 entry['translation_status'] = 7
+
+    # Alter: 将译文栏的内容移动到原文栏
+    def copy_translated_text_into_source_text(self,cache_list):
+        for entry in cache_list:
+            entry['source_text'] = entry['translated_text']
 
     # 处理缓存数据的非中日韩字符，且改变翻译状态为7
     def process_dictionary_list(self,cache_list):
