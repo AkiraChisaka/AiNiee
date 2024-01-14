@@ -3225,7 +3225,7 @@ class Cache_Manager():
     # Alter: 将译文栏的内容移动到原文栏
     def copy_translated_text_into_source_text(self,cache_list):
         for entry in cache_list:
-            entry['source_text'] = entry['translated_text']
+            entry['source_text'] = entry.get('translated_text')
 
     # 处理缓存数据的非中日韩字符，且改变翻译状态为7
     def process_dictionary_list(self,cache_list):
