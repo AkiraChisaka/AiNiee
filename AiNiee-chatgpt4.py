@@ -100,11 +100,6 @@ class Translator():
         # Alter: 把译文考进原文
         Cache_Manager.set_translated_text_as_source_text(self,cache_list)
 
-        print("Is the problem here?")
-        print("cache_list = ")
-        print(cache_list)
-
-
 
         # 如果翻译日语或者韩语文本时，则去除非中日韩文本
         Text_Source_Language =  Window.Widget_translation_settings.A_settings.comboBox_source_text.currentText() 
@@ -142,6 +137,8 @@ class Translator():
         print("[INFO]  已添加默认原文示例",original_exmaple, '\n')
         print("[INFO]  已添加默认译文示例",translation_example, '\n')
         print("[INFO]  文本总行数为：",total_text_line_count,"  每次发送行数为：",line_count_configuration,"  计划的翻译任务总数是：", tasks_Num) 
+
+        # Alter: 移除sleep
         print("\033[1;32m[INFO] \033[0m 开始进行翻译，请注意保持网络通畅，余额充足。", '\n')
         
 
@@ -2269,6 +2266,7 @@ class Configurator():
                 Target_Language = "Korean"
 
 
+            # Alter: 魔改造Prompt
             system_prompt = f'''You are a localization expert specialized in Japanese and Chinese culture, tasked with translating Japanese erotic stories into Simplified Chinese. The stories will involve size fetish and giantess themes, often featuring interactions between human characters of vastly different sizes. Please follow these steps for translation:
 - Step 1: Analyze the provided JSON file, focusing on the number of lines and the content in them. Understand that the JSON file is an excerpt from a larger story.
 - Step 2: Understand the content you are translating, especially the unique scenarios involving size differences, such as interactions between giant-sized characters and smaller characters (e.g., "Alice puts Bob inside her mouth"). Grasping the essence and emotions of these scenarios is crucial for conveying the story accurately.
@@ -2314,6 +2312,9 @@ Output the translation in the same JSON format:
 
     # 获取默认翻译示例
     def get_default_translation_example(self):
+
+        # Alter: 魔改造示例
+
         #日语示例
         exmaple_jp = '''{
 "1": "（は、早く、外へ…！）",
@@ -3068,13 +3069,9 @@ class File_Reader():
                     with open(file_path, 'r', encoding='utf-8') as json_file:
                         json_data = json.load(json_file)
 
-                        print("Focus Here:")
-
                         # 提取键值对
                         for key, value in json_data.items():
                             # 根据 JSON 文件内容的数据结构，获取相应字段值
-                            print("key = " + key)
-                            print("value = " + value)
                             source_text = key
                             translated_text = value
                             storage_path = os.path.relpath(file_path, folder_path) 
