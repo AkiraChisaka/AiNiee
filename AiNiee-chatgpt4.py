@@ -1092,6 +1092,11 @@ class Api_Requester():
                         print(f"Error: {e}\n")
                         print("接口返回的错误信息如下")
                         print(response.prompt_feedback)
+
+                        # Debug: print stuff
+                        print("response.prompt_feedback = ")
+                        print(response.prompt_feedback)
+
                         #处理完毕，再次进行请求
                         continue
 
@@ -1583,7 +1588,6 @@ class Request_Tester():
         else:
             print("[INFO] 存在API KEY测试失败！！！！")
             user_interface_prompter.signal.emit("接口测试结果","测试失败",0,0,0)
-
 
     # google官方接口测试
     def google_request_test(self):
